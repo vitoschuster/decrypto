@@ -22,7 +22,7 @@ If you would like to contribute to the development of Decrypto, you can submit b
 
 ## Credits
 
-Decrypto was developed by Vito Schuster. The app uses data from various cryptocurrency APIs, including [API Name Here] and [API Name Here].
+Decrypto was developed by Vito Schuster. The app uses data from various cryptocurrency APIs, including Coin Gecko API v3 https://www.coingecko.com/en/api/documentation.
 
 ## License
 
