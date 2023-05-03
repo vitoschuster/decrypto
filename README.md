@@ -1,4 +1,4 @@
-# decrypto
+# decrypto.
 
 Decrypto is a lightweight, minimalistic mobile app for tracking cryptocurrency prices and market trends. 
 The app allows users to view current prices for popular cryptocurrencies, as well as historical data and charts for market trends.
