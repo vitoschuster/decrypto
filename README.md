@@ -1,4 +1,4 @@
-![CleanShot 2023-05-03 at 18 11 41@2x](https://user-images.githubusercontent.com/76746212/235976002-fc3e505a-1752-47ae-a876-cd0f2b0eca71.png)
+![decrypto-app-icon](https://user-images.githubusercontent.com/76746212/235976320-9da55fd1-8280-4903-a4e1-eb5e02f91527.png)
 
 # decrypto.
 
