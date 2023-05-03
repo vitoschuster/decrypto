@@ -6,7 +6,7 @@ import { Text, View } from '../../components/Themed';
 export default function Home() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Hello{'\n'}There</Text>
+      <Text style={styles.title}>Hello{'\n'}there</Text>
 
       <EditScreenInfo path="app/(tabs)/index.tsx" />
     </View>
@@ -20,8 +20,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 50,
+    fontWeight: '500',
+    lineHeight: 50
   },
   separator: {
     marginVertical: 30,
