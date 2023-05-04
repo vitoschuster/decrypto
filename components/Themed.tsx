@@ -3,9 +3,17 @@
  * https://docs.expo.io/guides/color-schemes/
  */
 
-import { Text as DefaultText, useColorScheme, View as DefaultView } from 'react-native';
-
+import {
+  Text as DefaultText,
+  useColorScheme,
+  View as DefaultView,
+  Pressable as DefaultPressable,
+  ScrollView as DefaultScrollView,
+  PressableProps,
+  Animated,
+} from 'react-native';
 import Colors from '../constants/Colors';
+import { useState } from 'react';
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
@@ -26,19 +34,76 @@ type ThemeProps = {
   darkColor?: string;
 };
 
+type ExtraPressableProps = {
+  smallestScale?: number
+}
+
 export type TextProps = ThemeProps & DefaultText['props'];
 export type ViewProps = ThemeProps & DefaultView['props'];
+export type ScrollViewProps = ThemeProps & DefaultScrollView['props'];
+export type CustomPressableProps = PressableProps & ExtraPressableProps;
 
 export function Text(props: TextProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
-
   return <DefaultText style={[{ color }, style]} {...otherProps} />;
 }
 
 export function View(props: ViewProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
+  const backgroundColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    'background'
+  );
 
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
+}
+
+export function ScrollView(props: ScrollViewProps) {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    'background'
+  );
+
+  return <DefaultScrollView style={[{ backgroundColor }, style]} {...otherProps} />;
+}
+
+
+export function Pressable(props: CustomPressableProps) {
+  const {smallestScale, ...otherProps } = props;
+  const [scaleValue] = useState(new Animated.Value(1));
+
+  const onPressIn = () => {
+    Animated.timing(scaleValue, {
+      toValue: smallestScale ?? 0.965,
+      duration: 50,
+      useNativeDriver: true
+    }
+    ).start()
+  };
+
+  const onPressOut = () => {
+    Animated.spring(scaleValue, {
+      toValue: 1,
+      useNativeDriver: true,
+      mass: 0.2,
+      overshootClamping: true
+
+    }).start();
+  };
+
+  const animatedStyle = {
+    transform: [{ scale: scaleValue }],
+  };
+
+  return (
+    <Animated.View style={animatedStyle}>
+      <DefaultPressable
+        onPressIn={onPressIn}
+        onPressOut={onPressOut}
+        {...otherProps}
+      ></DefaultPressable>
+    </Animated.View>
+  );
 }

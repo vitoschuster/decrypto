@@ -1,32 +1,21 @@
 import { StyleSheet } from 'react-native';
-
-import EditScreenInfo from '../../components/EditScreenInfo';
-import { Text, View } from '../../components/Themed';
+import { Pressable, Text, View } from '../../components/Themed';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import CoinList from '../../components/CoinList';
 
 export default function Home() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Hello{'\n'}there</Text>
-
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
-    </View>
+    <SafeAreaView style={{padding: 5}}>
+        <Header />
+        <CoinList />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   title: {
     fontSize: 50,
     fontWeight: '500',
     lineHeight: 50
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
   },
 });
