@@ -73,8 +73,10 @@ export function ScrollView(props: ScrollViewProps) {
 export function Pressable(props: CustomPressableProps) {
   const {smallestScale, ...otherProps } = props;
   const [scaleValue] = useState(new Animated.Value(1));
+  const [isPressed, setIsPressed] = useState(false);
 
   const onPressIn = () => {
+    setIsPressed(true);
     Animated.timing(scaleValue, {
       toValue: smallestScale ?? 0.965,
       duration: 50,
@@ -84,6 +86,7 @@ export function Pressable(props: CustomPressableProps) {
   };
 
   const onPressOut = () => {
+    setIsPressed(false);
     Animated.spring(scaleValue, {
       toValue: 1,
       useNativeDriver: true,
@@ -95,7 +98,9 @@ export function Pressable(props: CustomPressableProps) {
 
   const animatedStyle = {
     transform: [{ scale: scaleValue }],
+    backgroundColor: isPressed ? '#121212' : 'transparent',
   };
+  
 
   return (
     <Animated.View style={animatedStyle}>

@@ -45,6 +45,7 @@ function RootLayoutNav() {
 
   return (
     <>
+
       <SafeAreaProvider>
         <ThemeProvider
           value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
